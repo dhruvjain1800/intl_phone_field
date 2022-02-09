@@ -164,7 +164,7 @@ class IntlPhoneField extends StatefulWidget {
   /// Icon of the drop down button.
   ///
   /// Default is [Icon(Icons.arrow_drop_down)]
-  final Icon dropdownIcon;
+  final Widget dropdownIcon;
 
   /// Whether this text field should focus itself if nothing else is already focused.
   final bool autofocus;
@@ -398,32 +398,51 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              if (widget.enabled &&
-                  widget.showDropdownIcon &&
-                  widget.dropdownIconPosition == IconPosition.leading) ...[
-                widget.dropdownIcon,
-                SizedBox(width: 4),
-              ],
+              // if (widget.enabled &&
+              //     widget.showDropdownIcon &&
+              //     widget.dropdownIconPosition == IconPosition.leading) ...[
+              //   widget.dropdownIcon,
+              //   SizedBox(width: 4),
+              // ],
+              SizedBox(
+                width: 23,
+              ),
               if (widget.showCountryFlag) ...[
-                Image.asset(
-                  'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
-                  package: 'intl_phone_field',
-                  width: 32,
+                // Image.asset(
+                //   'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
+                //   package: 'intl_phone_field',
+                //   width: 32,
+
+                // ),
+                CircleAvatar(
+                  radius: 12,
+                  child: ClipOval(
+                    child: Image.asset(
+                      'assets/flags/${_selectedCountry.code.toLowerCase()}.png',
+                      fit: BoxFit.fill,
+                      height: 24,
+                      width: 24,
+                    ),
+                  ),
                 ),
                 SizedBox(width: 8),
               ],
+              widget.dropdownIcon,
+              SizedBox(
+                width: 17,
+              ),
               FittedBox(
                 child: Text(
                   '+${_selectedCountry.dialCode}',
                   style: widget.dropdownTextStyle,
                 ),
               ),
-              if (widget.enabled &&
-                  widget.showDropdownIcon &&
-                  widget.dropdownIconPosition == IconPosition.trailing) ...[
-                SizedBox(width: 4),
-                widget.dropdownIcon,
-              ],
+              // if (widget.enabled &&
+              //     widget.showDropdownIcon &&
+              //     widget.dropdownIconPosition == IconPosition.trailing) ...[
+              //   SizedBox(width: 4),
+              //   widget.dropdownIcon,
+              // ],
               SizedBox(width: 8),
             ],
           ),
